@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+   <script>
+     var num_children = $('#up-left').children().length;
+     var child_height = $('#up-left').height() / num_children;
+     var half_way = num_children * child_height / 2;
+     $(window).scrollTop(half_way);
+     var ul = '#up-left';
+     var dr = '#down-right';
+     function crisscross() {
+         $(ul).css('bottom', '-' + window.scrollY + 'px');
+         $(dr).css('bottom', '-' + window.scrollY + 'px');
+         var ulc = $(ul).children();
+         var drc = $(dr).children();
+         var corners = [ulc.first(),ulc.last(),drc.last(),drc.first()];
+         if (window.scrollY < half_way) {
+             $(window).scrollTop(half_way - child_height);
+              corners[2].appendTo(ul);
+              corners[0].prependTo(dr);
+         } else if (window.scrollY < half_way - child_height) {
+             $(window).scrollTop(half_way);
+             corners[1].appendTo(dr);
+             corners[3].prependTo(ul);
+         }
+     }
+     $(window).scroll(crisscross);
+ </script>
+
+</head>
+<body>
+  <div class="row">
+    <!-- About Me Div -->
+   <div class="column1">
+     <ul>
+       <li><a class="active" href="#home">Designs & Apps</a></li>
+       <li><a href="#web">Websites</a></li>
+       <li><a href="#cass">Cassiowave</a></li>
+       <li><a href="#about">About</a></li>
+       <li><a href="#about">Resume</a></li>
+       <li><img src="../ezgif.com-optimize.gif" width="100%" height="100%" alt="Sofia Grytsenko"></li>
+     </ul>
+   </div>
+
+   <!-- 1st Scroll Column -->
+   <div class="column">
+     <div id="up-left">
+
+         <div id="box" class="snap white">
+              <img src="assets/Tomogachi.png" width="100%" height="350px">
+              <a class="more" href="" title=""></a>
+
+         </div>
+         <div id="box" class="snap black">
+              <img src="assets/cassini.png" width="100%" height="350px">
+              <a class="more" href="" title=""></a>
+         </div>
+
+     </div>
+   </div>
+
+   <!-- 2nd Scroll Column -->
+   <div class="column">
+     <div id="down-right">
+         </div>
+         <div id="box" class="white">
+              <h1>TWO</h1>
+              <a class="more" href="" title=""></a>
+
+         </div>
+         <div id="box" style="background: pink" class="black">
+              <h1>ONE</h1>
+              <a class="more" href="" title=""></a>
+
+         </div>
+     </div>
+   </div>
+
+ </div>
+
+ <!-- End of Divs -->
+
+</body>
+</html>
